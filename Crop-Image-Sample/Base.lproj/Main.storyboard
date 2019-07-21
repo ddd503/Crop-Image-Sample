@@ -19,8 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheers" translatesAutoresizingMaskIntoConstraints="NO" id="yYA-Tq-1rK">
-                                <rect key="frame" x="0.0" y="157" width="414" height="313.5"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="343"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="MH6-zq-c0k"/>
+                                    <constraint firstAttribute="height" constant="343" id="qEI-bY-ygJ"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewI-cw-ZdG">
                                 <rect key="frame" x="157" y="622" width="100" height="100"/>
@@ -33,26 +37,9 @@
                                 <state key="normal" title="人">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyL-ho-oeb">
-                                <rect key="frame" x="33" y="622" width="100" height="100"/>
-                                <color key="backgroundColor" red="1" green="0.41927581930000002" blue="0.37943283030000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="4qG-Jq-vwU"/>
-                                    <constraint firstAttribute="width" secondItem="gyL-ho-oeb" secondAttribute="height" multiplier="1:1" id="yjd-sM-xJ6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="ピザ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puj-ve-eVd">
-                                <rect key="frame" x="103.5" y="770.5" width="207" height="71.5"/>
-                                <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="リセット">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <connections>
+                                    <action selector="tapHuman:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3iB-rU-ikR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="key-Hp-qha">
                                 <rect key="frame" x="281" y="622" width="100" height="100"/>
@@ -65,6 +52,35 @@
                                 <state key="normal" title="お酒">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapAlcohol:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vm3-7C-kTu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyL-ho-oeb">
+                                <rect key="frame" x="33" y="622" width="100" height="100"/>
+                                <color key="backgroundColor" red="1" green="0.41927581930000002" blue="0.37943283030000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="4qG-Jq-vwU"/>
+                                    <constraint firstAttribute="width" secondItem="gyL-ho-oeb" secondAttribute="height" multiplier="1:1" id="yjd-sM-xJ6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="ピザ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapPizza:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BgM-ND-6Lh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puj-ve-eVd">
+                                <rect key="frame" x="103.5" y="770.5" width="207" height="71.5"/>
+                                <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="リセット">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapReset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CII-A7-bZN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,11 +89,9 @@
                             <constraint firstItem="gyL-ho-oeb" firstAttribute="centerY" secondItem="ewI-cw-ZdG" secondAttribute="centerY" id="JxI-hH-dkU"/>
                             <constraint firstItem="key-Hp-qha" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.6" id="Lts-Le-QLA"/>
                             <constraint firstItem="ewI-cw-ZdG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ayw-JX-lCI"/>
-                            <constraint firstItem="yYA-Tq-1rK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.35" id="bOZ-31-EG9"/>
                             <constraint firstItem="Puj-ve-eVd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="i1N-db-pwz"/>
                             <constraint firstItem="Puj-ve-eVd" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.08" id="jlk-2z-qi7"/>
                             <constraint firstItem="gyL-ho-oeb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.4" id="nNV-qI-Brm"/>
-                            <constraint firstItem="yYA-Tq-1rK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="sJI-e0-9MO"/>
                             <constraint firstItem="Puj-ve-eVd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.8" id="t0G-nI-Qaz"/>
                             <constraint firstItem="key-Hp-qha" firstAttribute="centerY" secondItem="ewI-cw-ZdG" secondAttribute="centerY" id="vHs-ke-xY9"/>
                             <constraint firstItem="yYA-Tq-1rK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.7" id="vJk-AZ-2sc"/>
@@ -86,9 +100,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="yYA-Tq-1rK" id="fT4-Pn-Uyq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
     </scenes>
     <resources>
