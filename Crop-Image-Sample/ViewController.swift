@@ -37,11 +37,12 @@ class ViewController: UIViewController {
 
     private func cropImage(frames: [CGRect]) {
         reset()
-
+        // 白背景のbaseViewを用意
         baseView = UIView(frame: imageView.frame)
         baseView.backgroundColor = .white
         view.addSubview(baseView)
 
+        // baseView上に表示中の画像から指定箇所を切り取ってImageViewを作り乗せていく、最後にbaseViewを元画像の上から重ねる
         frames.forEach { [weak self] (rect) in
             guard let self = self, let image = self.imageView.image,
                 let cropImage = image.crop(rect: rect, imageViewSize: self.imageView.frame.size) else {
