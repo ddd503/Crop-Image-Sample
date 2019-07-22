@@ -12,17 +12,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     private var baseView: UIView!
-    private let humanFrame = [CGRect(x: 60, y: 0, width: 176, height: 184)]
-    private let pizzaFrame = [CGRect(x: 0, y: 250, width: 264, height: 93),
-                              CGRect(x: 120, y: 180, width: 200, height: 70)]
-    private let alcoholFrame = [CGRect(x: 0, y: 30, width: 76, height: 280),
-                                CGRect(x: 45, y: 130, width: 76, height: 132),
-                                CGRect(x: 320, y: 80, width: 100, height: 198)]
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+    private let humanFrame = [CGRect(x: 60, y: 5, width: 176, height: 184)]
+    private let pizzaFrame = [CGRect(x: 15, y: 230, width: 264, height: 80),
+                              CGRect(x: 120, y: 180, width: 180, height: 70)]
+    private let alcoholFrame = [CGRect(x: 15, y: 10, width: 76, height: 280),
+                                CGRect(x: 45, y: 110, width: 76, height: 132),
+                                CGRect(x: 320, y: 80, width: 90, height: 190)]
 
     @IBAction func tapPizza(_ sender: UIButton) {
         cropImage(frames: pizzaFrame)
@@ -42,9 +37,11 @@ class ViewController: UIViewController {
 
     private func cropImage(frames: [CGRect]) {
         reset()
+
         baseView = UIView(frame: imageView.frame)
         baseView.backgroundColor = .white
         view.addSubview(baseView)
+
         frames.forEach { [weak self] (rect) in
             guard let self = self, let image = self.imageView.image,
                 let cropImage = image.crop(rect: rect, imageViewSize: self.imageView.frame.size) else {
@@ -52,6 +49,8 @@ class ViewController: UIViewController {
             }
             let cropImageView = UIImageView(image: cropImage)
             cropImageView.frame = rect
+            cropImageView.layer.masksToBounds = true
+            cropImageView.layer.cornerRadius = 10
             cropImageView.contentMode = .scaleAspectFill
             baseView.addSubview(cropImageView)
         }
@@ -78,5 +77,3 @@ extension UIImage {
         return cropImage
     }
 }
-
-

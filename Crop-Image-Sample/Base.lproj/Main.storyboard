@@ -18,13 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheers" translatesAutoresizingMaskIntoConstraints="NO" id="yYA-Tq-1rK">
-                                <rect key="frame" x="0.0" y="142" width="414" height="343"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheers_860 × 645" translatesAutoresizingMaskIntoConstraints="NO" id="yYA-Tq-1rK">
+                                <rect key="frame" x="-8" y="152.5" width="430" height="322.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="MH6-zq-c0k"/>
-                                    <constraint firstAttribute="height" constant="343" id="qEI-bY-ygJ"/>
-                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewI-cw-ZdG">
                                 <rect key="frame" x="157" y="622" width="100" height="100"/>
@@ -37,6 +33,12 @@
                                 <state key="normal" title="人">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tapHuman:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3iB-rU-ikR"/>
                                 </connections>
@@ -52,6 +54,12 @@
                                 <state key="normal" title="お酒">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tapAlcohol:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vm3-7C-kTu"/>
                                 </connections>
@@ -67,6 +75,12 @@
                                 <state key="normal" title="ピザ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tapPizza:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BgM-ND-6Lh"/>
                                 </connections>
@@ -78,6 +92,12 @@
                                 <state key="normal" title="リセット">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tapReset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CII-A7-bZN"/>
                                 </connections>
@@ -110,6 +130,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cheers" width="640" height="480"/>
+        <image name="cheers_860 × 645" width="430" height="322.5"/>
     </resources>
 </document>
