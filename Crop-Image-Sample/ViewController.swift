@@ -45,14 +45,14 @@ class ViewController: UIViewController {
         // baseView上に表示中の画像から指定箇所を切り取ってImageViewを作り乗せていく、最後にbaseViewを元画像の上から重ねる
         frames.forEach { [weak self] (rect) in
             guard let self = self, let image = self.imageView.image,
-                let cropImage = image.crop(rect: rect, imageViewSize: self.imageView.frame.size) else {
+                let cropImage = image.cropUseCgImage(rect: rect, imageViewSize: self.imageView.frame.size) else {
                     return
             }
             let cropImageView = UIImageView(image: cropImage)
             cropImageView.frame = rect
             cropImageView.layer.masksToBounds = true
             cropImageView.layer.cornerRadius = 10
-            cropImageView.contentMode = .scaleAspectFill
+            cropImageView.contentMode = .scaleAspectFit // 画像の比率は固定で
             baseView.addSubview(cropImageView)
         }
     }
@@ -63,8 +63,9 @@ class ViewController: UIViewController {
     }
 }
 
+// 切り取りの方法は２つ用意（どちらも同様の結果）
 extension UIImage {
-    func crop(rect: CGRect, imageViewSize: CGSize) -> UIImage? {
+    func cropUseUIGraphics(rect: CGRect, imageViewSize: CGSize) -> UIImage? {
         let imageViewScale = max(imageViewSize.width / self.size.width,
                                  imageViewSize.height / self.size.height)
         let cropSize = CGSize(width: rect.size.width / imageViewScale,
@@ -76,5 +77,18 @@ extension UIImage {
         let cropImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return cropImage
+    }
+    
+    func cropUseCgImage(rect: CGRect, imageViewSize: CGSize) -> UIImage? {
+        let imageViewScale = max(self.size.width * self.scale / imageViewSize.width,
+                                 self.size.height * self.scale / imageViewSize.height)
+        let cropZone = CGRect(x: rect.origin.x * imageViewScale,
+                              y: rect.origin.y * imageViewScale,
+                              width: rect.size.width * imageViewScale,
+                              height: rect.size.height * imageViewScale)
+        guard let cgImage = self.cgImage, let cropImage = cgImage.cropping(to: cropZone) else {
+            return nil
+        }
+        return UIImage(cgImage: cropImage, scale: self.scale, orientation: self.imageOrientation)
     }
 }
