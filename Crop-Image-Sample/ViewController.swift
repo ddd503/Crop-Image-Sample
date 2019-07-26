@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 
         // baseView上に表示中の画像から指定箇所を切り取ってImageViewを作り乗せていく、最後にbaseViewを元画像の上から重ねる
         frames.forEach { [weak self] (rect) in
-            guard let self = self, let image = self.imageView.image,
+            guard let self = self, let image = self.imageView.image?.resize(self.imageView.frame.size),
                 let cropImage = image.cropUseCgImage(rect: rect, imageViewSize: self.imageView.frame.size) else {
                     return
             }
@@ -78,7 +78,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return cropImage
     }
-    
+
     func cropUseCgImage(rect: CGRect, imageViewSize: CGSize) -> UIImage? {
         let imageViewScale = max(self.size.width * self.scale / imageViewSize.width,
                                  self.size.height * self.scale / imageViewSize.height)
@@ -90,5 +90,20 @@ extension UIImage {
             return nil
         }
         return UIImage(cgImage: cropImage, scale: self.scale, orientation: self.imageOrientation)
+    }
+
+    // 指定したsizeにリサイズする
+    func resize(_ size: CGSize) -> UIImage? {
+        let widthRatio = size.width / self.size.width
+        let heightRatio = size.height / self.size.height
+        let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
+        let resizedSize = CGSize(width: self.size.width * ratio, height: self.size.height * ratio)
+
+        UIGraphicsBeginImageContextWithOptions(resizedSize, true, 0.0)
+        draw(in: CGRect(origin: .zero, size: resizedSize))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return resizedImage
     }
 }
