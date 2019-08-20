@@ -38,14 +38,14 @@ class ViewController: UIViewController {
     private func cropImage(frames: [CGRect]) {
         reset()
         // 白背景のbaseViewを用意
-        baseView = UIView(frame: imageView.frame)
+        baseView = UIView(frame: imageView.image!.aspectFitFrame(imageView: imageView))
         baseView.backgroundColor = .white
         view.addSubview(baseView)
 
         // baseView上に表示中の画像から指定箇所を切り取ってImageViewを作り乗せていく、最後にbaseViewを元画像の上から重ねる
         frames.forEach { [weak self] (rect) in
             guard let self = self, let image = self.imageView.image?.resize(self.imageView.frame.size),
-                let cropImage = image.cropUseCgImage(rect: rect, imageViewSize: self.imageView.frame.size) else {
+                let cropImage = image.cropUseCgImage(rect: rect, imageView: self.imageView) else {
                     return
             }
             let cropImageView = UIImageView(image: cropImage)
@@ -79,9 +79,11 @@ extension UIImage {
         return cropImage
     }
 
-    func cropUseCgImage(rect: CGRect, imageViewSize: CGSize) -> UIImage? {
-        let imageViewScale = max(self.size.width * self.scale / imageViewSize.width,
-                                 self.size.height * self.scale / imageViewSize.height)
+    // aspectFitのイメージ対応版
+    func cropUseCgImage(rect: CGRect, imageView: UIImageView) -> UIImage? {
+        let imageaAspectFitSize = aspectFitSize(imageViewBounds: imageView.bounds)
+        let imageViewScale = max(imageaAspectFitSize.width * self.scale / imageView.frame.width,
+                                 imageaAspectFitSize.height * self.scale / imageView.frame.height)
         let cropZone = CGRect(x: rect.origin.x * imageViewScale,
                               y: rect.origin.y * imageViewScale,
                               width: rect.size.width * imageViewScale,
@@ -105,5 +107,23 @@ extension UIImage {
         UIGraphicsEndImageContext()
 
         return resizedImage
+    }
+
+    // UIImageView内にcontentModeをaspectFitで表示した場合のUIImageのサイズ
+    private func aspectFitSize(imageViewBounds: CGRect) -> CGSize {
+        let widthRatio = imageViewBounds.width / size.width
+        let heightRatio = imageViewBounds.height / size.height
+        let ratio = (widthRatio > heightRatio) ? heightRatio : widthRatio
+        let resizedWidth = size.width * ratio
+        let resizedHeight = size.height * ratio
+        let aspectFitSize = CGSize(width: resizedWidth, height: resizedHeight)
+        return aspectFitSize
+    }
+    // UIImageView内にcontentModeをaspectFitで表示した場合のUIImageのFrame
+    func aspectFitFrame(imageView: UIImageView) -> CGRect {
+        let size = aspectFitSize(imageViewBounds: imageView.bounds)
+        return CGRect(origin: CGPoint(x: imageView.frame.origin.x + (imageView.bounds.size.width - size.width) * 0.5,
+                                      y: imageView.frame.origin.y + (imageView.bounds.size.height - size.height) * 0.5),
+                      size: size)
     }
 }
